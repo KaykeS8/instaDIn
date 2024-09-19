@@ -1,26 +1,38 @@
-<h2>Log in</h2>
+<div class="flex justify-between w-screen">
+  <section class="p-4 w-full">
+    <header class="container font-bold text-xl">
+      <%= link_to 'InstaDIn', root_path %>
+    </header>
+    <div class="flex flex-col items-center justify-center mt-16">
+    <h2 class="text-4xl font-bold mb-2">Entrar</h2>
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: {class: 'w-[450px]'}) do |f| %>
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'rounded-md focus:bg-blue-50 w-full mb-3' %>
+        </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+        <div class="field">
+          <%= f.label :password %><br />
+          <%= f.password_field :password, autocomplete: "current-password", class: 'rounded-md focus:bg-blue-50 w-full mb-3' %>
+        </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "current-password" %>
-  </div>
+        <% if devise_mapping.rememberable? %>
+          <div class="field mb-3">
+            <%= f.check_box :remember_me, class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" %>
+            <%= f.label :remember_me %>
+          </div>
+        <% end %>
 
-  <% if devise_mapping.rememberable? %>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+        <div class="actions mb-4">
+          <%= f.submit "Log in", class: 'bg-blue-600 py-2 rounded-md w-full text-white hover:bg-blue-800 transition cursor-pointer' %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
     </div>
-  <% end %>
+  </section>
+  <section class="w-full h-screen">
+    <%= image_tag asset_path('image-login'), class: 'block bg-cover w-full h-screen' %>
+  </section>
+</div>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>

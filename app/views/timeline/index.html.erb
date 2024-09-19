@@ -1,0 +1,5 @@
+<div>
+    <p>VOce precisa estar autenticado</p>
+    <p><%= current_user.name%></p>
+    <%= link_to 'sair', destroy_user_session_path,data: {turbo_method: :delete} %>
+</div>
