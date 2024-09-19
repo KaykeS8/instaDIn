@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "home#index"
-  get '/timeline', to: 'timeline#index'
+  root "site#index"
+  get '/site', to: 'site#index'
+  get '/home', to: 'home#index'
 end
