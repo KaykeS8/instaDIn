@@ -70,4 +70,4 @@ gem "tailwindcss-rails", "~> 2.7"
 
 gem "devise", "~> 4.9"
 
-gem "foreman", "~> 0.88.1"
+gem "foreman", github: 'ddollar/foreman'
