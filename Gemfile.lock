@@ -1,3 +1,9 @@
+GIT
+  remote: https://github.com/ddollar/foreman.git
+  revision: 3a262714030a83a59388a48ffdb2e93cdac12388
+  specs:
+    foreman (0.88.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -108,7 +114,6 @@ GEM
       warden (~> 1.2.3)
     drb (2.2.1)
     erubi (1.13.0)
-    foreman (0.88.1)
     globalid (1.2.1)
       activesupport (>= 6.1)
     i18n (1.14.5)
@@ -286,7 +291,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
-  foreman (~> 0.88.1)
+  foreman!
   importmap-rails
   jbuilder
   pg (~> 1.1)
