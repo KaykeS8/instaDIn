@@ -2,5 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root "site#index"
   get '/site', to: 'site#index'
-  resources :posts
+  resources :posts do 
+    get "/like", to: 'posts#handle_likes'
+  end
 end
