@@ -1,16 +1,6 @@
-<div>
-  <h1 class="font-bold text-4xl">Posts#index</h1>
-  <p>Find me in app/views/posts/index.html.erb</p>
-  <%= link_to "sing out", destroy_user_session_path, data: {turbo_method: :delete}%>
-
-  <% @posts.each do |post| %>
-    <div class="mt-4">
-      <div>
-        <strong><%= post.user.name%></strong>
-        <%= image_tag url_for(post.image) if post.image.attached?%>
-      </div>
-      <p><%= post.description%></p>
-      <span>Number of likes: <%= post.number_of_likes%></span>
-    </div>
+<section>
+  <%= turbo_frame_tag Post.new%>
+  <%= turbo_frame_tag "posts" do %>
+    <%= render @posts%>
   <% end %>
-</div>
+</section>

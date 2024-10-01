@@ -1,12 +1,19 @@
-<%= form_with( model: post, multipart: true) do |form|%>
-    <div>
-        <%= form.label :image%>
-        <%= form.file_field :image%>
-    </div>
-
-    <div>
-        <%= form.label :description%>
-        <%= form.text_field :description%>
-    </div>
-    <%= form.submit%>
-<% end %>
+<%= form_with(model: @post, multipart: true, class: "space-y-4") do |form| %>
+        <!-- Campo de upload de imagem -->
+        <div class="flex flex-col">
+          <%= form.label :image, "Choose image", class: "font-semibold mb-2" %>
+          <%= form.file_field :image, class: "border border-gray-300 p-2 rounded-lg" %>
+        </div>
+        
+        <!-- Campo de descrição -->
+        <div class="flex flex-col">
+          <%= form.label :description, "Description", class: "font-semibold mb-2" %>
+          <%= form.text_field :description, class: "border border-gray-300 p-2 rounded-lg" %>
+        </div>
+        
+        <!-- Botão de submissão -->
+        <div class="flex gap-4">
+          <%= form.submit "Send", class: "bg-blue-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-blue-600 transition cursor-pointer" %>
+          <%= link_to "Cancel",posts_path, class: 'bg-red-500 text-white font-medium py-2 px-4 rounded-lg hover:bg-red-600 transition cursor-pointer'%>
+        </div>
+      <% end %>
