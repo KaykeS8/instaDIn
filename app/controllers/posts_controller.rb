@@ -27,6 +27,13 @@ class PostsController < ApplicationController
     redirect_to posts_path, status: :see_other
   end
 
+  def handle_likes
+    @post = Post.find(params[:post_id])
+    @post.number_of_likes += 1
+    @post.save
+    redirect_to(posts_path)
+  end
+
   private
   def set_post
     @post = Post.find(params[:id])
