@@ -49,7 +49,7 @@
     </div>
     
     <div>
-      numeros de curtidas <%= post.number_of_likes%>
+      <%= last_user_of_like(post)%>
     </div>
     <!-- Descrição do Post -->
     <p class="text-gray-700"><strong><%= post.user.name %> </strong> <%= post.description %></p>
