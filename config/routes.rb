@@ -3,6 +3,6 @@ Rails.application.routes.draw do
   root "site#index"
   get '/site', to: 'site#index'
   resources :posts do 
-    get "/like", to: 'posts#handle_likes'
+    resources :likes, only: [:create, :destroy]
   end
 end
