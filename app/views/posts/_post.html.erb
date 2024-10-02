@@ -5,7 +5,7 @@
       <div class="flex items-center gap-2">
         <!-- Avatar e nome do usuário -->
         <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
-        <span class="font-semibold"><%= current_user.name %></span>
+        <span class="font-semibold"><%= post.user.name %></span>
 
         <!-- Separador e tempo do post -->
         <div class="flex items-center gap-1">
@@ -29,17 +29,30 @@
   <!-- Descrição e Botões de Ação -->
   <div class="p-4">
     <!-- Botões de ação (Curtir, Comentar) -->
-    <div class="flex items-center space-x-4 mb-2">
-      <button class="focus:outline-none">
-        <svg class="w-6 h-6 text-gray-500 hover:text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path></svg>
-      </button>
-      <button class="focus:outline-none">
-        <svg class="w-6 h-6 text-gray-500 hover:text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h18"></path></svg>
-      </button>
+    <div class="flex items-center justify-between space-x-4 mb-2">
+      <div class="flex items-center gap-5">
+        <% if already_liked?(post) %>
+          <%= button_to post_like_path(post, post.likes.find_by(user_id: current_user.id)), method: :delete do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+              </svg>
+          <% end %>
+          <% else %>
+            <%= button_to post_likes_path(post), method: :post do %>
+                <i class="bi bi-heart"></i>
+            <% end %>
+        <% end %>
+        <i class="bi bi-chat"></i>
+        <i class="bi bi-send"></i>
+      </div>
+        <i class="bi bi-bookmark"></i>
     </div>
     
+    <div>
+      numeros de curtidas <%= post.number_of_likes%>
+    </div>
     <!-- Descrição do Post -->
-    <p class="text-gray-700"><strong><%= post.user.name %>: </strong> <%= post.description %></p>
+    <p class="text-gray-700"><strong><%= post.user.name %> </strong> <%= post.description %></p>
   </div>
 </div>
 
