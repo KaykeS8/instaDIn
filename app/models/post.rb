@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_one_attached :image
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
   scope :ordered, -> {order(id: :desc)}
 end
