@@ -1,6 +1,11 @@
 class LikesController < ApplicationController
+    layout "dashboard"
     before_action :find_post
     before_action :find_like, only: [:destroy]
+
+    def index
+        @likes = @post.likes
+    end
 
     def create
         @post.likes.create(user_id: current_user.id)
