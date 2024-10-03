@@ -49,7 +49,11 @@
     </div>
     
     <div>
-      <%= last_user_of_like(post)%>
+      <% if post_has_likes(post)%>
+        <%= link_to last_user_of_like(post), post_likes_path(post), data: {turbo_frame: 'likes'}%>
+        <% else%>
+          <%= last_user_of_like(post)%>
+      <% end %>
     </div>
     <!-- Descrição do Post -->
     <p class="text-gray-700"><strong><%= post.user.name %> </strong> <%= post.description %></p>
