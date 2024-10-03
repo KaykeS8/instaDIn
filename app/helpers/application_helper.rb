@@ -12,4 +12,8 @@ module ApplicationHelper
             "be the first to like"
         end
     end
+
+    def post_has_likes(post)
+        Like.where(post_id: post).count > 0
+    end
 end
