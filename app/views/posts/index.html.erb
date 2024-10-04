@@ -1,6 +1,7 @@
 <section>
   <%= turbo_frame_tag Post.new%>
   <%= turbo_frame_tag "likes"%>
+  <%= turbo_frame_tag "comments"%>
   <%= turbo_frame_tag "posts" do %>
     <%= render @posts%>
   <% end %>
