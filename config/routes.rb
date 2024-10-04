@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   get '/site', to: 'site#index'
   resources :posts do 
     resources :likes, only: [:index, :create, :destroy]
+    resources :comments, expect: [:show]
   end
 end
