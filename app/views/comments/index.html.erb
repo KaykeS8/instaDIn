@@ -1,17 +1,36 @@
 <%= turbo_frame_tag "comments" do %>
-    <section class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-10">
-        <div class="bg-white rounded-lg shadow-lg w-full max-w-max">
+    <section class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-10" id="modal">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-max relative">
+            <!-- Botão X para fechar -->
+            <button class="absolute top-0 right-0 mt-2 mr-2 text-gray-500 hover:text-gray-800" 
+                    onclick="document.getElementById('modal').remove()">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
             <div class="flex">
-              <div class="w-full h-96 bg-gray-200">
-                <%= image_tag(url_for(@post.image), class: 'w-full h-full object-cover') if @post.image.attached? %>
-              </div>
+                <div class="w-full h-96 bg-gray-200">
+                    <%= image_tag(url_for(@post.image), class: 'w-full h-full object-cover') if @post.image.attached? %>
+                </div>
                 <div class="w-full">
                     <div class="flex py-2 p-4 gap-2 items-center border-b border-black">
-                         <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
+                        <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
                         <span class="font-semibold"><%= @post.user.name %></span>
                     </div>
                     <div class="py-2 px-4">
-                        <%= render @comments%>
+                        <div>
+                            <% if description_of_post_exists?(@post) %>
+                                <div class="flex gap-2">
+                                    <img class="w-10 h-10 rounded-full mb-6" src="https://via.placeholder.com/150" alt="User Avatar">
+                                    <div>
+                                        <span class="font-bold gap-1"><%= @post.user.name%>:</span>
+                                        <p><%= @post.description%></p>
+                                    </div>
+                                </div>
+                            <% end %>
+                        </div>
+                        <%= render @comments %>
                     </div>
                 </div>
             </div>
