@@ -16,4 +16,9 @@ module ApplicationHelper
     def post_has_likes(post)
         Like.where(post_id: post).count > 0
     end
+
+    def description_of_post_exists?(post)
+        return false if post.description.blank?
+        true
+    end 
 end
