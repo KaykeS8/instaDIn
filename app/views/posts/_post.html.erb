@@ -58,7 +58,14 @@
       <% end %>
     </div>
     <!-- Descrição do Post -->
-    <p class="text-gray-700"><strong><%= post.user.name %> </strong> <%= post.description %></p>
+    <p class="text-gray-700">
+      <% if description_of_post_exists?(post)%>
+        <strong><%= post.user.name %> </strong> 
+        <%= post.description %></p>
+        <% else %> 
+          "This post don't has description"
+      <% end %>
+    </p>
   </div>
 </div>
 
