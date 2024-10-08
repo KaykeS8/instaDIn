@@ -4,15 +4,16 @@ class CommentsController < ApplicationController
 
     def index
         @comments = Comment.where(post_id: params[:post_id])
+        @comment = Comment.new
     end
-
+    
     def create
         @comment = @post.comments.create(comment_params)
         @comment.user_id = current_user.id
         if @comment.save
             redirect_to post_comments_path(@post), status: :created
         else
-            render :index
+            render :index, status: :unprocessable_entity
         end
     end
 
