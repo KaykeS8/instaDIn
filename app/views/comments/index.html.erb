@@ -14,11 +14,11 @@
                     <%= image_tag(url_for(@post.image), class: 'w-full h-full object-cover') if @post.image.attached? %>
                 </div>
                 <div class="w-full">
-                    <div class="flex py-2 p-4 gap-2 items-center border-b border-black">
+                    <div class="header flex py-2 p-4 gap-2 items-center border-b border-black">
                         <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
                         <span class="font-semibold"><%= @post.user.name %></span>
                     </div>
-                    <div class="py-2 px-4">
+                    <div class="body flex flex-col h-full py-2 px-4">
                         <div>
                             <% if description_of_post_exists?(@post) %>
                                 <div class="flex gap-2">
@@ -31,6 +31,7 @@
                             <% end %>
                         </div>
                         <%= render @comments %>
+                        <%= render 'form' %>
                     </div>
                 </div>
             </div>
