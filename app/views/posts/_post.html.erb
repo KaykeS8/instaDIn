@@ -42,7 +42,7 @@
                 <i class="bi bi-heart"></i>
             <% end %>
         <% end %>
-        <%= link_to post_comments_path(post),data: {turbo_frame: 'comments'} do %>
+        <%= link_to post_comments_path(post),data: {turbo_frame: 'comment_of_post'} do %>
           <i class="bi bi-chat"></i>
         <% end %>
         <i class="bi bi-send"></i>
