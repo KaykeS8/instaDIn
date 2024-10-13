@@ -1,0 +1,75 @@
+<div class="max-w-md mx-auto bg-white border border-gray-300 rounded-lg shadow-md mb-6">
+  <!-- Cabeçalho do Post (Nome de usuário e opções) -->
+  <div class="flex items-center justify-between p-4">
+    <div class="flex items-center space-x-4">
+      <div class="flex items-center gap-2">
+        <!-- Avatar e nome do usuário -->
+        <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
+        <span class="font-semibold"><%= post.user.name %></span>
+
+        <!-- Separador e tempo do post -->
+        <div class="flex items-center gap-1">
+          <div class="w-1 h-1 rounded-full bg-[#d9d9d9]"></div>
+          <span class="whitespace-nowrap">
+            <%= distance_of_time_in_words(post.created_at, Time.current, include_seconds: false) %> 
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botão de deletar post -->
+    <%= link_to '🗑️', post_path(post), data: { turbo_method: :delete }, class: "text-red-500 hover:text-red-700" %>
+  </div>
+
+  <!-- Imagem do Post -->
+  <div class="w-full h-96 bg-gray-200">
+    <%= image_tag(url_for(post.image), class: 'w-full h-full object-cover') if post.image.attached? %>
+  </div>
+
+  <!-- Descrição e Botões de Ação -->
+  <div class="p-4">
+    <!-- Botões de ação (Curtir, Comentar) -->
+    <div class="flex items-center justify-between space-x-4 mb-2">
+      <div class="flex items-center gap-5">
+        <% if already_liked?(post) %>
+          <%= button_to post_like_path(post, post.likes.find_by(user_id: current_user.id)), method: :delete do %>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="red" class="bi bi-heart-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+              </svg>
+          <% end %>
+          <% else %>
+            <%= button_to post_likes_path(post), method: :post do %>
+                <i class="bi bi-heart"></i>
+            <% end %>
+        <% end %>
+        <%= link_to post_comments_path(post),data: {turbo_frame: 'comment_of_post'} do %>
+          <i class="bi bi-chat"></i>
+        <% end %>
+        <i class="bi bi-send"></i>
+      </div>
+        <i class="bi bi-bookmark"></i>
+    </div>
+    
+    <div>
+      <% if post_has_likes(post)%>
+        <%= link_to last_user_of_like(post), post_likes_path(post), data: {turbo_frame: 'likes'}%>
+        <% else%>
+          <%= last_user_of_like(post)%>
+      <% end %>
+    </div>
+    <!-- Descrição do Post -->
+    <p class="text-gray-700">
+      <% if description_of_post_exists?(post)%>
+        <strong><%= post.user.name %> </strong> 
+        <%= post.description %></p>
+        <% else %> 
+          "This post don't has description"
+      <% end %>
+    </p>
+  </div>
+</div>
+
+<!-- Botão de logout -->
+<div class="flex justify-end p-4">
+  <%= link_to "Sair", destroy_user_session_path, data: { turbo_method: :delete }, class: "bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition" %>
+</div>

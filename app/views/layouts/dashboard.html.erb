@@ -21,10 +21,10 @@
         <nav class="mt-5">
           <ul>
             <li class="mb-3">
-              <a href="#" class="flex items-center p-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
+              <%=link_to posts_path, class: "flex items-center p-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors"  do %>
                 <i class="bi bi-house"></i>
                 <span class="ml-4">Home</span>
-              </a>
+              <% end %>
             </li>
             <li class="mb-3">
               <a href="#" class="flex items-center p-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
@@ -38,12 +38,12 @@
                 <span class="ml-4">Friends</span>
               </a>
             </li>
-            <li class="mb-3">
-              <a href="#" class="flex items-center p-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
-                <i class="bi bi-plus-circle"></i>
-                <span class="ml-4">Post</span>
-              </a>
-            </li>
+              <li class="mb-3">
+                <%= link_to new_post_path, class: "flex items-center p-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors",data: {turbo_frame: 'new_post'} do %>
+                  <i class="bi bi-plus-circle"></i>
+                  <span class="ml-4">Post</span>
+                <% end %>
+              </li>
           </ul>
         </nav>
         <div class="bg-white p-[0.4px] mb-4"></div>
