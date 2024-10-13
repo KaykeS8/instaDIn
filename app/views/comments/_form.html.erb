@@ -1,7 +1,12 @@
-<%= form_with(model: [@post, @comment],local:true, class: "flex items-center gap-2 w-full mt-10") do |form| %>
+<%= form_with(model: [@post, @comment],local:true) do |form| %>
     <!-- Campo de texto -->
-    <%= form.text_field :description, placeholder: "Adicione um comentário...", class: "w-full py-2 px-4 rounded-md  focus:outline-none" %>
+    <div class="flex items-center gap-2 w-full mt-10">
+        <%= form.text_field :description, placeholder: "Adicione um comentário...", class: "w-full py-2 px-4 rounded-md  focus:outline-none" %>
 
-    <!-- Botão de envio dentro do input -->
-    <%= form.submit 'Send', class: 'bg-[#6366F1] text-white font-semibold py-2 px-6 rounded-md hover:bg-[#484bff] cursor-pointer' %>
+        <!-- Botão de envio dentro do input -->
+        <%= form.submit 'Send', class: 'bg-[#6366F1] text-white font-semibold py-2 px-6 rounded-md hover:bg-[#484bff] cursor-pointer' %>
+    </div>
+    <% if @comment.errors%>
+        <p class="text-red-600"><%= @comment.errors.messages[:description][0]%></p>
+    <% end %>
 <% end %>
