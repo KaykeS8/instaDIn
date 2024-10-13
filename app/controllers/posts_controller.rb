@@ -12,7 +12,7 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    if @post.save!
+    if @post.save
       respond_to do |format|
         format.html {redirect_to(posts_path, status: :created, notice: 'Post was successfuly created')}
         format.turbo_stream
