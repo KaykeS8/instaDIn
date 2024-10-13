@@ -3,6 +3,9 @@
         <div class="flex flex-col">
           <%= form.label :image, "Choose image", class: "font-semibold mb-2" %>
           <%= form.file_field :image, class: "border border-gray-300 p-2 rounded-lg" %>
+          <% if @post.errors%>
+            <p class="text-red-600"><%= @post.errors[:image][0]%></p>
+          <% end %>
         </div>
         
         <!-- Campo de descrição -->
