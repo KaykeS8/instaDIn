@@ -16,6 +16,7 @@ class CommentsController < ApplicationController
                 format.turbo_stream 
             end
         else
+            @comments = Comment.where(post_id: params[:post_id]).order(id: :desc)
             render :index, status: :unprocessable_entity
         end
     end
