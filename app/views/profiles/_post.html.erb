@@ -1,0 +1,7 @@
+<% posts.each do |post|%>
+    <div>
+        <%= link_to post_comments_path(post) do %>
+            <%= image_tag(url_for(post.image)) %>
+        <% end %>
+    </div>
+<% end %>
