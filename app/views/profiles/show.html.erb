@@ -1,3 +1,29 @@
-<div>
-    YOUR PROFILE
+<div class="">
+    <div class="flex gap-16 mb-12">
+        <img class=" w-32 h-32 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
+        <div>
+            <div class="flex items-center gap-3 mb-4">
+                <span class="text-base font-bold"><%= current_user.name%></span>
+                <%= link_to "Edit your profile", edit_profile_path, class: 'bg-[#e4e4e4] p-1 rounded-md text-sm'%>
+                <%= link_to "Messasge", "", class: 'bg-[#e4e4e4] p-1 rounded-md text-sm'%>
+            </div>
+            <div class="flex items-center gap-4 mb-3">
+                <p>10 posts</p>
+                <p>660 followers</p>
+                <p>300 following</p>
+            </div>
+            <span class="block font-bold mb-3"><%= current_user.name%></span>
+            <p class="max-w-[365px]">Sou um jovem que gosta de curtir a vida, ouvir boas
+            musicas, beber uma cerveja, correr na rua para praticar um pouco.</p>
+        </div>
+    </div>
+    <div class="feed">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg-grid-cols-4 gap-2">
+            <% if @posts.count != 0 %>
+                <%= render 'profiles/post', posts: @posts %>
+            <% else %>
+                <p>No posts</p>
+            <% end %>
+        </div>
+    </div>
 </div>
