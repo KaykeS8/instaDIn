@@ -4,7 +4,11 @@
     <div class="flex items-center space-x-4">
       <div class="flex items-center gap-2">
         <!-- Avatar e nome do usuário -->
-        <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
+        <% if photo_of_user && current_user.name == post.user.name%>
+          <%= image_tag(url_for(photo_of_user), class: 'w-10 h-10 rounded-full')%>
+        <% else %>
+          <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
+        <% end %>
         <span class="font-semibold"><%= post.user.name %></span>
 
         <!-- Separador e tempo do post -->
