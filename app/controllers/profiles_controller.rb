@@ -1,8 +1,8 @@
 class ProfilesController < ApplicationController
     layout "dashboard"
+    before_action :set_profile, only: [:show, :edit, :update]
     def show
         @posts = Post.where(user_id: current_user.id)
-        @profile = Profile.where(user_id: current_user.id).first
     end
 
     def new
@@ -19,10 +19,21 @@ class ProfilesController < ApplicationController
         end
     end
 
-    def edit
+    def edit;end
+
+    def update
+        if @profile.update(profile_params)
+            redirect_to profile_path, status: :ok, notice: 'Profile was updated'
+        else
+            render :edit, status: :unprocessable_entity
+        end
     end
 
     private
+
+    def set_profile
+        @profile = current_user.profile
+    end
 
     def profile_params
         params.require(:profile).permit(:bio, :photo_of_profile)
