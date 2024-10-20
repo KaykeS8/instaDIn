@@ -22,7 +22,7 @@ module ApplicationHelper
         true
     end
 
-    def photo_of_user
-        current_user.profile.photo_of_profile
+    def photo_of_user(post)
+        post.user.profile.photo_of_profile
     end
 end
