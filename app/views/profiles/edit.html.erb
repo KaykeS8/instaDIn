@@ -1,3 +1,31 @@
-<div>
-    EDIÇÃO
-</div>
+<section class="max-w-3xl mx-auto p-4">
+    <h1 class="text-2xl font-semibold mb-6">Edit your profile</h1>
+    <%= form_with(model: @profile, url:profile_path,local:true, class: "space-y-6") do |form| %>
+        <!-- Seção da foto e nome do perfil -->
+        <div class="flex justify-between items-center bg-gray-100 p-5 rounded-md shadow-sm">
+            <!-- Foto de perfil e detalhes do usuário -->
+            <div class="flex items-center gap-4">
+                <% if @profile && @profile.photo_of_profile%>
+                    <%= image_tag(url_for(@profile.photo_of_profile), class: 'w-32 h-32 rounded-full object-cover') %>
+                <% else %>
+                     <img class="w-32 h-32 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
+                <%end%>
+                <div>
+                    <p class="font-bold text-lg"><%= current_user.name %></p>
+                    <p class="text-sm text-gray-500"><%= current_user.name %></p>
+                </div>
+            </div>
+            
+            <!-- Campo de upload de nova foto -->
+            <%= form.file_field :photo_of_profile, class: 'bg-blue-600 text-white px-4 py-2 rounded cursor-pointer'%> 
+        </div>
+        <div>
+            <%= form.text_field :bio, class: 'w-full bg-gray-100 p-5 rounded-md shadow-sm border-none'%>
+        </div>
+
+        <!-- Outros campos podem ser adicionados aqui -->
+        <div class="text-right">
+            <%= form.submit "Save changes", class: "bg-[#484BFF] hover:bg-[#3437dd] text-white font-semibold py-2 px-4 rounded-md cursor-pointer" %>
+        </div>
+    <% end %>
+</section>
