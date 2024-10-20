@@ -1,7 +1,7 @@
 <div class="">
     <div class="flex gap-16 mb-12">
-            <% if @profile.photo_of_profile %>
-                <%= image_tag(url_for(@profile.photo_of_profile ), class: 'w-32 h-32 rounded-full')%>
+            <% if @profile && @profile.photo_of_profile %>
+                <%= image_tag(url_for(@profile.photo_of_profile ), class: 'w-32 h-32 rounded-full object-cover')%>
             <%else%>
                 <img class=" w-32 h-32 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
             <% end %>
@@ -17,7 +17,7 @@
                 <p>300 following</p>
             </div>
             <span class="block font-bold mb-3"><%= current_user.name%></span>
-            <% unless @profile.bio.nil? %>
+            <% if @profile && @profile.bio %>
                 <p class="max-w-[365px]"><%= @profile.bio%></p>
             <%else%>
                 <p>No bio</p>
