@@ -1,6 +1,8 @@
 class PostsController < ApplicationController
   layout 'dashboard'
   before_action :set_post, only: [:destroy]
+  before_action :check_profile
+  
   def index
     @posts = Post.ordered
   end
