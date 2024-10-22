@@ -86,7 +86,7 @@
             <!-- User Avatar -->
             <div data-controller="modal" data-action="click->modal#handleModal" class="flex items-center gap-2 cursor-pointer">
               <div class="w-10 h-10 rounded-full overflow-hidden">
-                <% if current_user.profile.photo_of_profile %>
+                <% if current_user.profile &&  current_user.profile.photo_of_profile %>
                   <%= image_tag(url_for(current_user.profile.photo_of_profile), class: 'object-cover w-full h-full') %>
                 <%else%>
                     <img class=" w-32 h-32 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
