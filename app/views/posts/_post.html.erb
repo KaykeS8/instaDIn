@@ -2,23 +2,25 @@
   <!-- Cabeçalho do Post (Nome de usuário e opções) -->
   <div class="flex items-center justify-between p-4">
     <div class="flex items-center space-x-4">
-      <div class="flex items-center gap-2">
-        <!-- Avatar e nome do usuário -->
-        <% if photo_of_user(post)%>
-          <%= image_tag(url_for(photo_of_user(post)), class: 'w-10 h-10 rounded-full object-cover')%>
-        <% else %>
-          <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
-        <% end %>
-        <span class="font-semibold"><%= post.user.name %></span>
+      <%= link_to profile_path(post.user.name), data: {turbo_frame: '_top'} do %>
+        <div class="flex items-center gap-2">
+          <!-- Avatar e nome do usuário -->
+            <% if photo_of_user(post)%>
+              <%= image_tag(url_for(photo_of_user(post)), class: 'w-10 h-10 rounded-full object-cover')%>
+            <% else %>
+              <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
+            <% end %>
+            <span class="font-semibold"><%= post.user.name %></span>
 
-        <!-- Separador e tempo do post -->
-        <div class="flex items-center gap-1">
-          <div class="w-1 h-1 rounded-full bg-[#d9d9d9]"></div>
-          <span class="whitespace-nowrap">
-            <%= distance_of_time_in_words(post.created_at, Time.current, include_seconds: false) %> 
-          </span>
+          <!-- Separador e tempo do post -->
+          <div class="flex items-center gap-1">
+            <div class="w-1 h-1 rounded-full bg-[#d9d9d9]"></div>
+            <span class="whitespace-nowrap">
+              <%= distance_of_time_in_words(post.created_at, Time.current, include_seconds: false) %> 
+            </span>
+          </div>
         </div>
-      </div>
+      <%end%>
     </div>
 
     <!-- Botão de deletar post -->
