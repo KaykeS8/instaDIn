@@ -2,7 +2,8 @@ class ProfilesController < ApplicationController
     layout "dashboard"
     before_action :set_profile, only: [:show, :edit, :update]
     def show
-        @posts = Post.where(user_id: current_user.id)
+        @user = User.find_by!(name: params[:user_name])
+        @posts = @user.posts
     end
 
     def new
