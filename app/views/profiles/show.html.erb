@@ -1,14 +1,16 @@
-<div class="">
+<div>
     <div class="flex gap-16 mb-12">
             <% if @profile && @profile.photo_of_profile %>
-                <%= image_tag(url_for(@profile.photo_of_profile ), class: 'w-32 h-32 rounded-full object-cover')%>
+                <%= image_tag(url_for(@user.profile.photo_of_profile ), class: 'w-32 h-32 rounded-full object-cover')%>
             <%else%>
                 <img class=" w-32 h-32 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
             <% end %>
         <div>
             <div class="flex items-center gap-3 mb-4">
-                <span class="text-base font-bold"><%= current_user.name%></span>
-                <%= link_to "Edit your profile", edit_profile_path, class: 'bg-[#e4e4e4] p-1 rounded-md text-sm'%>
+                <span class="text-base font-bold"><%= @user.name%></span>
+                <% unless current_user != @user %>
+                    <%= link_to "Edit your profile", edit_profile_path, class: 'bg-[#e4e4e4] p-1 rounded-md text-sm'%>
+                <% end %>
                 <%= link_to "Messasge", "", class: 'bg-[#e4e4e4] p-1 rounded-md text-sm'%>
             </div>
             <div class="flex items-center gap-4 mb-3">
@@ -16,9 +18,9 @@
                 <p>660 followers</p>
                 <p>300 following</p>
             </div>
-            <span class="block font-bold mb-3"><%= current_user.name%></span>
+            <span class="block font-bold mb-3"><%= @user.name%></span>
             <% if @profile && @profile.bio %>
-                <p class="max-w-[365px]"><%= @profile.bio%></p>
+                <p class="max-w-[365px]"><%= @user.profile.bio%></p>
             <%else%>
                 <p>No bio</p>
             <% end %>
