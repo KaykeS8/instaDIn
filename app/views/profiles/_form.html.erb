@@ -1,0 +1,14 @@
+<%= form_with(model: profile, multipart: true) do |form|%>
+    <div class="flex flex-col gap-3 mb-3">
+        <%= form.label :photo_of_profile, 'choose image', class: 'font-bold mb-1' %>
+        <%= form.file_field :photo_of_profile, class: 'border border-gray-300 p-2 rounded-lg cursor-pointer'%>
+    </div>
+
+    <div class="flex flex-col gap-3 mb-4">
+        <%= form.label :bio, 'Your Bio', class: 'font-bold'%>
+        <%= form.text_field :bio, class: 'border border-gray-300 p-2 rounded-lg cursor-pointer'%>
+    </div>
+    <div>
+        <%= form.submit nil, class: 'text-white bg-red-600 p-2 rounded-md cursor-pointer'%>
+    </div>
+<% end %>

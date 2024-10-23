@@ -20,5 +20,9 @@ module ApplicationHelper
     def description_of_post_exists?(post)
         return false if post.description.blank?
         true
-    end 
+    end
+
+    def photo_of_user(post)
+        post.user.profile.photo_of_profile
+    end
 end

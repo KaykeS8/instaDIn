@@ -1,3 +1,6 @@
-<div>
-    <p>liked by <%= like.user.name%></p>
+<div class="my-5">
+    <div class="flex items-center gap-2">
+        <%= image_tag(url_for(like.user.profile.photo_of_profile),class: 'w-10 h-10 rounded-full object-cover') %>
+        <span><%= like.user.name %></span>
+    </div>
 </div>
