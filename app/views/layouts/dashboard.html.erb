@@ -33,10 +33,10 @@
               </a>
             </li>
             <li class="mb-3">
-              <a href="#" class="flex items-center p-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors">
+              <%= link_to 'friends',class:"flex items-center p-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors" do%>
                 <i class="bi bi-people"></i>
                 <span class="ml-4">Friends</span>
-              </a>
+              <% end %>
             </li>
               <li class="mb-3">
                 <%= link_to new_post_path, class: "flex items-center p-3 text-gray-300 hover:bg-gray-700 hover:text-white rounded-lg transition-colors",data: {turbo_frame: 'new_post'} do %>
