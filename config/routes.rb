@@ -7,5 +7,5 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :create, :destroy, :edit]
   end
   resources :profiles, param: :user_name
-  get '/friends', to: 'friends#index'
+  resources :friends, only: [:index, :create, :destroy]
 end
