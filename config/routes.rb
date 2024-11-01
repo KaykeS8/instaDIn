@@ -7,5 +7,6 @@ Rails.application.routes.draw do
     resources :comments, only: [:index, :create, :destroy, :edit]
   end
   resources :profiles, param: :user_name
-  resources :friends, only: [:index, :create, :destroy]
+  resources :friends, only: [:new, :create, :destroy]
+  post '/friends/:id', to: 'friends#create'
 end
