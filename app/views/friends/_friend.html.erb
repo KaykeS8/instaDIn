@@ -17,8 +17,7 @@
             <h2 class="text-lg font-semibold"><%= user.name%></h2>
             </div>
         </div>
-        <%= button_to 'Enviar pedido de amizade', friends_path(user.id), method: :post, class: 'mt-4 w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600'%>
-        
+        <%= button_to 'Enviar pedido de amizade', friend_path(user.id), method: :post, class: 'mt-4 w-full bg-blue-500 text-white font-semibold py-2 px-4 rounded hover:bg-blue-600'%>
     </div>
 
 <% end %>
