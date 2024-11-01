@@ -1,12 +1,13 @@
 class FriendsController < ApplicationController
     layout 'dashboard'
-    def index
+    def new
         @users = User.all
+        @friend = Friend.new
     end
 
     def create
-        puts "BATEU HERE"
-        puts params
+        @followed = User.find(params[:id])
+        Friend.create(current_user.id, @followed.id)
     end
 
     def destroy
