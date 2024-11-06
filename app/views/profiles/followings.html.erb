@@ -1,7 +1,7 @@
 <%= turbo_frame_tag "followings" do %>
     <section class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
     <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
-        <h1>All followers</h1>
+        <h1>All followings</h1>
         <% @followings.each do |user| %>
             <div class="my-5">
                 <div class="flex items-center gap-2">
@@ -10,7 +10,11 @@
                     <% else %>
                         <img class=" w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
                     <% end %>
-                    <span><%= user.followed.name %></span>;
+                    <span><%= user.followed.name %></span>
+                    <% if @profile === @user.profile %>
+                        <%= link_to "unfollow", friend_path(user.followed.id), data: {turbo_method: :delete}, class: 'text-blue-600 hover:text-blue-800 transition-all underline'%>
+                    <% end%>
+                    <%=%>
                 </div>
             </div>
         <% end %>
