@@ -1,6 +1,10 @@
 <div class="my-5">
     <div class="flex items-center gap-2">
-        <%= image_tag(url_for(like.user.profile.photo_of_profile),class: 'w-10 h-10 rounded-full object-cover') %>
+        <% if like.user.profile && like.user.profile.photo_of_profile %>
+            <%= image_tag(url_for(like.user.profile.photo_of_profile),class: 'w-10 h-10 rounded-full object-cover') %>
+        <% else %>
+            <img class=" w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
+        <% end %>
         <span><%= like.user.name %></span>
     </div>
 </div>
