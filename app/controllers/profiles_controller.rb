@@ -1,9 +1,20 @@
 class ProfilesController < ApplicationController
     layout "dashboard"
     before_action :set_profile, only: [:show, :edit, :update]
+    before_action :set_user, only: [:show, :followers, :followings]
+
     def show
-        @user = User.find_by!(name: params[:user_name])
+        @followers = Friend.where(followed_id: @user.id)
+        @followings = @user.followers
         @posts = @user.posts
+    end
+
+    def followers
+        @followers = Friend.where(followed_id: @user.id)
+    end
+
+    def followings
+        @followings = @user.followers
     end
 
     def new
@@ -31,6 +42,10 @@ class ProfilesController < ApplicationController
     end
 
     private
+
+    def set_user
+       @user = User.find_by(name: params[:user_name])
+    end
 
     def set_profile
         @profile = current_user.profile
