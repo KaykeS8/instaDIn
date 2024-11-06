@@ -9,4 +9,10 @@ class FriendsController < ApplicationController
         @followed = User.find(params[:id])
         current_user.followers.create!(followed_id: @followed.id)
     end
+
+    def destroy
+        @friend = Friend.find_by!(followed_id: params[:id])
+        @friend.destroy
+        redirect_to(profile_path(current_user.name) ,status: :see_other)
+    end
 end
