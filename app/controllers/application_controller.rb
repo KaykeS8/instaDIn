@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
     before_action :configure_permitted_parameters, if: :devise_controller?
     before_action :authenticate_user!, unless: :site_controller?
-    before_action :check_profile, expect: [:new, :create, :edit, :update, :destroy], if: :devise_controller?
 
     protected
     def configure_permitted_parameters

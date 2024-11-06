@@ -1,5 +1,6 @@
 class FriendsController < ApplicationController
     layout 'dashboard'
+    before_action :check_profile
     def new
         @friends_id = current_user.followers.pluck(:followed_id)
         @users = User.where.not(id: @friends_id + [current_user.id])
