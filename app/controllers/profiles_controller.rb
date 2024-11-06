@@ -1,6 +1,6 @@
 class ProfilesController < ApplicationController
     layout "dashboard"
-    before_action :set_profile, only: [:show, :edit, :update]
+    before_action :set_profile, only: [:show, :edit, :update, :followings]
     before_action :set_user, only: [:show, :followers, :followings]
 
     def show
