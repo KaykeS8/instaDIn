@@ -14,9 +14,13 @@
                 <%= link_to "Messasge", "", class: 'bg-[#e4e4e4] p-1 rounded-md text-sm'%>
             </div>
             <div class="flex items-center gap-4 mb-3">
-                <p>10 posts</p>
-                <p>660 followers</p>
-                <p>300 following</p>
+                <p><%= @posts.count%> posts</p>
+                <%= link_to "/followers/#{@user.name}", data: {turbo_frame: 'followers'} do %>
+                    <p><%= @followers.count%> followers</p>
+                <% end %>
+                <%= link_to "/followings/#{@user.name}", data: {turbo_frame: 'followings'} do %>
+                    <p><%= @followings.count%> following</p>
+                <% end %>
             </div>
             <span class="block font-bold mb-3"><%= @user.name%></span>
             <% if @profile && @profile.bio %>
@@ -36,3 +40,6 @@
         </div>
     </div>
 </div>
+
+<%= turbo_frame_tag 'followers'%>
+<%= turbo_frame_tag 'followings'%>
