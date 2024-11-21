@@ -1,0 +1,42 @@
+<div class="flex gap-3 h-full w-full">
+  <!-- Lista de Seguidores -->
+  <div class="w-1/4 bg-gray-100 p-4 rounded-lg overflow-y-auto">
+    <% @followers.each do |follower| %>
+      <%=link_to chats_path(recipient_id: follower.id), data: {turbo_method: :post}, class:"flex gap-3 items-center mb-4" do%>
+        <% if follower.profile && follower.profile.photo_of_profile %>
+          <%= image_tag(url_for(follower.profile.photo_of_profile), class: 'object-cover w-10 h-10 rounded-full') %>
+        <% else %>
+          <img class="w-10 h-10 rounded-full" src="https://via.placeholder.com/150" alt="User Avatar">
+        <% end %>
+        <p class="text-gray-700 font-medium"><%= follower.name %></p>
+      <%end%>
+    <% end %>
+  </div>
+
+  <!-- Área de Mensagens -->
+  <div class="flex-1 bg-white shadow rounded-lg flex flex-col">
+    <!-- HeaderMensagens -->
+    <div class="flex-1 p-4 overflow-y-auto">
+      <div class="text-center text-gray-500">
+          <div class="text-center">
+            <% if @chat_single %>
+              <h2><%= @chat_single.recipient_user.name%></h2>
+            <% else %>
+              <p>Inicie uma conversa</p>
+            <% end %>
+          </div>
+      </div>
+      <%= turbo_stream_from @chat_single%>
+      <div id="messages">
+      </div>
+    </div>
+
+    <!-- Formulário na parte inferior -->
+    <div class="p-3">
+      <% if @chat_single%>
+        <%= render "messages/new_message_form", chat: @chat_single, message: @message%>
+      <% end %>
+    </div>
+  </div>
+
+</div>
