@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'chat/index'
+  get 'messages/index'
   devise_for :users
   root "site#index"
   get '/site', to: 'site#index'
@@ -14,4 +16,8 @@ Rails.application.routes.draw do
   
   resources :friends, only: [:new, :create, :destroy, :index]
   post '/friends/:id', to: 'friends#create'
+
+  resources :chats, only: [:index, :create, :show] do 
+    resources :messages 
+  end
 end
