@@ -9,6 +9,15 @@ class Chat < ApplicationRecord
   # Garante unicidade dos pares de IDs, independente da ordem
   validates :sender_user_id, uniqueness: { scope: :recipient_user_id, message: "Este chat já existe" }
 
+  scope :between_users, -> (user1,user2) {
+    where(
+      "(sender_user_id = :user1 AND recipient_user_id = :user2) OR 
+       (sender_user_id = :user2 AND recipient_user_id = :user1)",
+      user1: user1,
+      user2: user2
+    )
+  }
+
   private
 
   # Troca os IDs para garantir sempre a mesma ordem
