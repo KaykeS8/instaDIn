@@ -25,4 +25,8 @@ module ApplicationHelper
     def photo_of_user(post)
         post.user.profile.photo_of_profile
     end
+
+    def post_of_user(post)
+        post.user.id === current_user.id
+    end
 end
