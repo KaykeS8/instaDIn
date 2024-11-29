@@ -1,4 +1,4 @@
-<div class="max-w-md mx-auto bg-white border border-gray-300 rounded-lg shadow-md mb-6">
+<div class="max-w-md mx-auto bg-white border border-gray-300 rounded-lg shadow-md mb-6 ">
   <!-- Cabeçalho do Post (Nome de usuário e opções) -->
   <div class="flex items-center justify-between p-4">
     <div class="flex items-center space-x-4">
@@ -24,7 +24,8 @@
     </div>
 
     <!-- Botão de deletar post -->
-    <%= link_to '🗑️', post_path(post), data: { turbo_method: :delete }, class: "text-red-500 hover:text-red-700" %>
+    
+    <%= link_to '🗑️', post_path(post), data: { turbo_method: :delete }, class: "text-red-500 hover:text-red-700" if post_of_user(post) %>
   </div>
 
   <!-- Imagem do Post -->
