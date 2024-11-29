@@ -25,7 +25,7 @@ class ProfilesController < ApplicationController
         @profile = Profile.new(profile_params)
         @profile.user_id = current_user.id
         if @profile.save
-            redirect_to profile_path, status: :created, notice: 'Profile was created'
+            redirect_to profile_url, status: :created, notice: 'Profile was created'
         else
             render :new, status: :unprocessable_entity
         end
@@ -35,7 +35,7 @@ class ProfilesController < ApplicationController
 
     def update
         if @profile.update(profile_params)
-            redirect_to profile_path, status: :ok, notice: 'Profile was updated'
+            redirect_to(profile_path, status: :ok, notice: 'Profile was updated')
         else
             render :edit, status: :unprocessable_entity
         end
