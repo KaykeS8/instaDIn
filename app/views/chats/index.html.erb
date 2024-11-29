@@ -23,13 +23,24 @@
               <h2><%= @chat_single.recipient_user.name%></h2>
             <% else %>
               <p>Inicie uma conversa</p>
-            <% end %>
+            <% end %>.
           </div>
       </div>
-      <%= turbo_stream_from @chat_single%>
+      <%= turbo_stream_from @chat_single if @chat_single%>
       <div id="messages" class="flex flex-col space-y-2 overflow-y-auto p-4 h-full">
+        <% if @chat_single%>
+          <% @chat_single.messages.each do |message|%>
+              <div>
+                <div class="flex flex-col gap-1">
+                <strong><%= message.sender_user.name%></strong>
+                <%= message.content%>
+                </div>
+              </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
+
   
 
     <!-- Formulário na parte inferior -->
